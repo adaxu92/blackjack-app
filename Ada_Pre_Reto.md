@@ -19,8 +19,15 @@
 
 ### Project Plan
 Tuesday:
-- 25 min Css styling
-- PSEUDO-CODE!!!
+ 
+- Touch projectindex.html
+- Touch app.js
+- Touch projectstyle.css
+- Set jQuery
+- 25 min Css styling 
+- Create git repo for html, css, js, imgs, 
+- PSEUDO CODE!!
+- Make arrays?
 - shuffle cards
 - How to distribute two random card values for player and another 
 
