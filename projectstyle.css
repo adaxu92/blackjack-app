@@ -1,0 +1,36 @@
+body {
+	background-color: black;
+	width: 90%;
+	height: 100%;
+}
+
+h1 {
+	font-size: 100px;
+	color: white;
+	text-align: center;
+	font-family: Arial;
+}
+
+.userCard {
+	border: 2px solid white;
+	border-radius: 20px;
+	height: 100px;
+	width: 80px;
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+}
+
+.dealerCard {
+	border: 2px solid white;
+	border-radius: 20px;
+	height: 100px;
+	width: 80px;
+	display: inline-block;
+	float: right;
+	margin-right: 0px;
+}
+
+form {
+	text-align: center;
+}
