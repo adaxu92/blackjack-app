@@ -1,78 +1,123 @@
-$(document).ready(function() {
+// $(document).ready(function() {
+
+var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
+var suits =["diamond", "clover", "heart","spade"];
+var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
+
+var deck = [];
+
+
+var makeCards = function(){
+	for (var i=0; i<values.length; i++){
+		for (var a=0; a<suits.length; a++) {
+			var card = { value: "", suit: "", name:"" };
+			card.value = values[i];
+			card.suit = suits[a];
+			card.name = names[i];
+			deck.push(card);
+		}
+	}
+}
+
+makeCards();
+var shuffle = function(o) {
+	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+};
+
+shuffle(deck);
+console.log(deck);
 
 //have cards with values 
 // 4 ones = 1ea or 11ea, 4 twos, 4 threes, 4 fours, 4 fives, 4 sixs, 4 sevens, 4 eights, 4 nines, 4 tens, 4 jacks = 10ea., 4 queens = 10ea., 4 kings = 10ea. 
 // is there a simpler way?
-var deck = {
-diamondace: 1,
-diamondtwo: 2,
-diamondthree: 3,
-diamondfour: 4,
-diamondfive: 5,
-diamondsix: 6,
-diamondseven: 7,
-diamondeight: 8,
-diamondnine: 9,
-diamondten: 10,
-diamondjack: 10,
-diamondqueen: 10,
-diamondking: 10,
-cloverace: 1,
-clovertwo: 2,
-cloverthree: 3,
-cloverfour: 4,
-cloverfive: 5,
-cloversix: 6,
-cloverseven: 7,
-clovereight: 8,
-clovernine: 9,
-cloverten: 10,
-cloverjack: 10,
-cloverqueen: 10,
-cloverking: 10,
-heartace: 1,
-hearttwo: 2,
-heartthree: 3,
-heartfour: 4,
-heartfive: 5,
-heartsix: 6,
-heartseven: 7,
-hearteight: 8,
-heartnine: 9,
-heartten: 10,
-heartjack: 10,
-heartqueen: 10,
-heartking: 10,
-spadeace: 1,
-spadetwo: 2,
-spadethree: 3,
-spadefour: 4,
-spadefive: 5,
-spadesix: 6,
-spadeseven: 7,
-spadeeight: 8,
-spadenine: 9,
-spadeten: 10,
-spadejack: 10,
-spadequeen: 10,
-spadeking: 10
-};
-console.log(deck);
+// var deck = {
+// diamondace: 1,
+// diamondtwo: 2,
+// diamondthree: 3,
+// diamondfour: 4,
+// diamondfive: 5,
+// diamondsix: 6,
+// diamondseven: 7,
+// diamondeight: 8,
+// diamondnine: 9,
+// diamondten: 10,
+// diamondjack: 10,
+// diamondqueen: 10,
+// diamondking: 10,
+// cloverace: 1,
+// clovertwo: 2,
+// cloverthree: 3,
+// cloverfour: 4,
+// cloverfive: 5,
+// cloversix: 6,
+// cloverseven: 7,
+// clovereight: 8,
+// clovernine: 9,
+// cloverten: 10,
+// cloverjack: 10,
+// cloverqueen: 10,
+// cloverking: 10,
+// heartace: 1,
+// hearttwo: 2,
+// heartthree: 3,
+// heartfour: 4,
+// heartfive: 5,
+// heartsix: 6,
+// heartseven: 7,
+// hearteight: 8,
+// heartnine: 9,
+// heartten: 10,
+// heartjack: 10,
+// heartqueen: 10,
+// heartking: 10,
+// spadeace: 1,
+// spadetwo: 2,
+// spadethree: 3,
+// spadefour: 4,
+// spadefive: 5,
+// spadesix: 6,
+// spadeseven: 7,
+// spadeeight: 8,
+// spadenine: 9,
+// spadeten: 10,
+// spadejack: 10,
+// spadequeen: 10,
+// spadeking: 10
+// };
+// console.log(deck);
 // player { name: '', cardTotal: cardvalues();}
 
 // put cards in array, key  = card & val = card corresponding value
 // var getcardvalue = function(){}
 // 
 // randomselector; function that randomizes object values in deck
-var randomCard = function(obj){
-	var keys = deck.keys(obj)
-	return obj[keys[ keys.length * Math.random() <<0]];
-};
+// var randomCard = function(obj){
+// 	var keys = Object.keys(obj)
+// 	return obj[keys[ keys.length * Math.random() <<0]];
+// 	distribute();
+// };
+
+// // distribute 2 cards to dealer and player
+// var distribute = function(){ 
+// 	var n = Math.floor(Math.random());
+// 	var v = deck.splice(n, 4);
+// 	console.log(v)
+// 	start();
+// };
+
+// var start = function(){
+// 	distribute(randomCard);
+// }
 
 
-// distribute 2 cards to dealer and player
-// var distribute = function(){
-// 	} randomCard()? // call for random card then distribute?
+// use randomCard, math.Random a value to splice
+// return splice
+// append value to a div
+	// splice two cards for player
+
+//randomCard()? // call for random card then distribute?
+// splice?
 // card value + together = ? 
 // var cardvalues = function {
 	// } distribute() and add values , set as arrays for distribute?? a loop fx?
@@ -102,10 +147,8 @@ var randomCard = function(obj){
 // winner of round gets 5 points added onto current points/score
 // first to hit zero, game over and game restarts
 
-}) 
+// }); 
 // Garbage //
-
-// ** Doesnt work because its takes in arrays and deck is object **
 // var shuffle = function(o) {
 // 	var j, x, i;
 // 	for(i = o.length; i; i -= 1){
@@ -116,6 +159,8 @@ var randomCard = function(obj){
 // 		return o;
 // 	}		
 // };
+// ** Doesnt work because its takes in arrays and deck is object **
+
 // shuffle(deck);
 // ** does that same thing as randomcard()  **
 // var tmpList = Object.keys(deck);

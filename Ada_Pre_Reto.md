@@ -28,7 +28,8 @@ Tuesday:
 - Create git repo for html, css, js, imgs, 
 - PSEUDO CODE!!
 - Make arrays?
-- shuffle cards
+- shuffle cards NVM
+- instead random object values, pop obj
 - How to distribute two random card values for player and another 
 
 Wednesday: 
