@@ -1,20 +1,56 @@
 // $(document).ready(function() {
+window.onload = function(){
+var deal = document.getElementById('dealButton');
+deal.addEventListener("click", function(){
+	shuffle(deck);
+	cardDeals();
+	console.log('click')
+})
 
+var hit = document.getElementById('hitButton');
+hit.addEventListener('click', function(){
+	cardOne();
+	console.log('slick')
+})
+
+var stand = document.getElementById('standButton');
+stand.addEventListener("click", function(){
+	standing();
+	console.log('snickers')
+})
+
+var player = {
+	name: " ",
+	current: [],
+	values: function(){
+		for (var a = 0; a < player.current.length; i++) {
+			var totale = 0;
+			totale += player.current[a]
+		}	
+		return totale
+	}
+};
+	console.log(player.values());
+var computer = {
+	name: "Mr.Bames Jond",
+	current: [],
+
+}
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
 
-var deck = [];
+var deck = []; //empty array
 
 
-var makeCards = function(){
-	for (var i=0; i<values.length; i++){
-		for (var a=0; a<suits.length; a++) {
-			var card = { value: "", suit: "", name:"" };
-			card.value = values[i];
-			card.suit = suits[a];
-			card.name = names[i];
-			deck.push(card);
+var makeCards = function(){ 
+	for (var i=0; i<values.length; i++){ // loops thru so that suits goes in each value
+		for (var a=0; a<suits.length; a++) { // loops thru so that we get 52 cards
+			var card = { value: "", suit: "", name:"" }; // card object contains keys with empty values
+			card.value = values[i];// number values goes into each card value
+			card.suit = suits[a]; // suits values goes into each card suit
+			card.name = names[i]; // name values goes into each card name
+			deck.push(card); // now card contains a total of 52 card name, suites and values that is placed into the empty deck arrat
 		}
 	}
 }
@@ -23,11 +59,43 @@ makeCards();
 var shuffle = function(o) {
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
-};
-
+}; // function to randomly shuffle deck
 shuffle(deck);
 console.log(deck);
 
+
+// console.log(distribute);
+
+var cardDeals = function(){
+		var card1 = deck.pop(0);
+		var card2 = deck.pop(0);
+		var card3 = deck.pop(0);
+		var card4 = deck.pop(0);
+		player.current.push(card1, card2);
+		console.log(player);
+		computer.current.push(card3, card4);
+		console.log(computer);
+	}
+
+
+var cardOne = function(){
+	console.log(deck);
+	player.current.push(deck.pop());
+	console.log(player);
+	computer.current.push(deck.pop());
+	console.log(computer);
+}
+
+var standing = function(){
+	console.log(player);
+	console.log(computer);
+}
+// 	for(var a = 0; a < player.current.length; a++) {
+// 		player.current[a]
+// 	if {
+// 		player.current // take the current hand, call for the array value and add the value 
+// 	}
+}
 //have cards with values 
 // 4 ones = 1ea or 11ea, 4 twos, 4 threes, 4 fours, 4 fives, 4 sixs, 4 sevens, 4 eights, 4 nines, 4 tens, 4 jacks = 10ea., 4 queens = 10ea., 4 kings = 10ea. 
 // is there a simpler way?
@@ -168,3 +236,17 @@ console.log(deck);
 // var propertyValue = deck[randomPropertyName];
 // ** applies to arrays **
 // var randomCard = deck[Math.floor(Math.random() * deck.length)];
+
+// *innerHTML might just need text and not an array value**
+// cardpop
+// 		var pEach = document.createElement('p'); // creates par
+// 		var cardOne = deck.pop[v];
+// 		pEach.innerHTML = []; // inside the text should display suit & values 
+// 		(pEach.innerHTML).push(cardOne);// place the par into userCards
+// 	}
+// }
+// cardOne
+// ** would not want to store objects into div **
+// var giveUser = document.getElementsByClassName('userCard'); // gets userCard 	
+//for (var e = 0; e < player.current.length; e++) {  // loops to distribute cardpop
+		// need to distribute a cardpop into the class giveUser twice (aka v for loops)

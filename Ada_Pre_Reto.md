@@ -33,6 +33,9 @@ Tuesday:
 - How to distribute two random card values for player and another 
 
 Wednesday: 
+- click start & shuffle
+- click hit and .pop
+- pop attribute  to inner html
 - Set conditions on how a player or dealer can win/lose round
 - Set points values to see who is the winner/loser of game
 
