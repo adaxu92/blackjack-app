@@ -1,5 +1,5 @@
 // $(document).ready(function() {
-window.onload = function(){
+// window.onload = function(){
 var deal = document.getElementById('dealButton');
 deal.addEventListener("click", function(){
 	shuffle(deck);
@@ -23,19 +23,29 @@ var player = {
 	name: " ",
 	current: [],
 	values: function(){
-		for (var a = 0; a < player.current.length; i++) {
-			var totale = 0;
-			totale += player.current[a]
-		}	
+		var totale = 0;
+		for (var a = 0; a < player.current.length; a++) {
+			totale += player.current[a].value;
+		}
 		return totale
+		// console.log(totale);
 	}
 };
-	console.log(player.values());
+
+// console.log(player.values());
+// console.log(player.values());
+
 var computer = {
 	name: "Mr.Bames Jond",
 	current: [],
-
-}
+	values: function(){
+		var total = 0;
+		for (var a = 0; a < computer.current.length; a++){
+			total += computer.current[a].value;
+		}	
+		return total
+	}
+};
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
@@ -89,13 +99,21 @@ var cardOne = function(){
 var standing = function(){
 	console.log(player);
 	console.log(computer);
+	console.log(player.values());
+	console.log(computer.values());
+	if (player.values() < computer.values()){
+		return("Player wins")
+	} else if (computer.values() < player.values()){
+		return ("Computer Wins")
+	}
+	console.log(standing());
 }
 // 	for(var a = 0; a < player.current.length; a++) {
 // 		player.current[a]
 // 	if {
 // 		player.current // take the current hand, call for the array value and add the value 
 // 	}
-}
+// }//turned off fam
 //have cards with values 
 // 4 ones = 1ea or 11ea, 4 twos, 4 threes, 4 fours, 4 fives, 4 sixs, 4 sevens, 4 eights, 4 nines, 4 tens, 4 jacks = 10ea., 4 queens = 10ea., 4 kings = 10ea. 
 // is there a simpler way?
