@@ -4,19 +4,17 @@ var deal = document.getElementById('dealButton');
 deal.addEventListener("click", function(){
 	shuffle(deck);
 	cardDeals();
-	console.log('click')
 })
 
 var hit = document.getElementById('hitButton');
 hit.addEventListener('click', function(){
 	cardOne();
-	console.log('slick')
 })
 
 var stand = document.getElementById('standButton');
 stand.addEventListener("click", function(){
 	standing();
-	console.log('snickers')
+	console.log(standing());
 })
 
 var player = {
@@ -26,14 +24,12 @@ var player = {
 		var totale = 0;
 		for (var a = 0; a < player.current.length; a++) {
 			totale += player.current[a].value;
-		}
-		return totale
-		// console.log(totale);
+		} if (totale > 21) {
+			return ("Bust - Player Loses")
+		} return totale
 	}
 };
 
-// console.log(player.values());
-// console.log(player.values());
 
 var computer = {
 	name: "Mr.Bames Jond",
@@ -42,15 +38,20 @@ var computer = {
 		var total = 0;
 		for (var a = 0; a < computer.current.length; a++){
 			total += computer.current[a].value;
-		}	
-		return total
+		} if (total > 21) {
+			return ("Bust - Dealer Loses")
+		} return total
 	}
 };
+
+
+
+
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
 
-var deck = []; //empty array
+var deck = []; 
 
 
 var makeCards = function(){ 
@@ -71,7 +72,7 @@ var shuffle = function(o) {
 		return o;
 }; // function to randomly shuffle deck
 shuffle(deck);
-console.log(deck);
+// console.log(deck);
 
 
 // console.log(distribute);
@@ -85,29 +86,38 @@ var cardDeals = function(){
 		console.log(player);
 		computer.current.push(card3, card4);
 		console.log(computer);
+		console.log(player.values());
+		console.log(computer.values());
 	}
 
 
+
 var cardOne = function(){
-	console.log(deck);
 	player.current.push(deck.pop());
 	console.log(player);
 	computer.current.push(deck.pop());
 	console.log(computer);
+	console.log(player.values());
+	console.log(computer.values());
 }
 
 var standing = function(){
-	console.log(player);
-	console.log(computer);
-	console.log(player.values());
-	console.log(computer.values());
-	if (player.values() < computer.values()){
-		return("Player wins")
-	} else if (computer.values() < player.values()){
-		return ("Computer Wins")
+	// console.log(player.values());
+	// console.log(computer.values());
+	if (player.values() > computer.values()){
+		return ("Player wins");
 	}
-	console.log(standing());
+	else if (player.values() < computer.values()){
+		return ("Computer Wins");
+	}
+	else if (player.values() === computer.values()){
+		return("Tie");
+	}
+	else{
+		return("Draw");
+	}
 }
+
 // 	for(var a = 0; a < player.current.length; a++) {
 // 		player.current[a]
 // 	if {
