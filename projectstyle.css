@@ -1,36 +1,73 @@
 body {
-	background-color: black;
-	width: 90%;
+	background-color: #4ca857;
+  width: 90%;
 	height: 100%;
 }
 
 h1 {
 	font-size: 100px;
-	color: white;
+	text-shadow: 8px 8px 8px #000000;
+	color: #ffffff;
+	font-family: 'Slackey', cursive;
+	margin: 0px;
 	text-align: center;
-	font-family: Arial;
+}
+#diamond{
+	background-image: url('images/diamond.png');
+	height: 100px;
+	width: 90px;
+	display: inline-block;
+}
+
+#clover{
+	background-image: url('images/clover.png');
+	height: 100px;
+	width: 90px;
+	display: inline-block;
+}
+#heart{
+	background-image: url('images/heart.png');
+	height: 90px;
+	width: 67px;
+	display: inline-block;
+}
+#spade{
+	height: 92px;
+	width: 78px;
+	background-image: url('images/spade.png');
+	display: inline-block;;
+}
+.headerContainer{
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+	text-align: center;
+	border: 8px solid white;
+	border-radius: 20px;
 }
 
 .userCard {
-	border: 2px solid white;
+	border: 5px solid white;
 	border-radius: 20px;
 	height: 100px;
 	width: 80px;
 	display: inline-block;
 	float: left;
 	margin-left: 10px;
+	margin-top: 20px;
 }
 
 .dealerCard {
-	border: 2px solid white;
+	border: 5px solid white;
 	border-radius: 20px;
 	height: 100px;
 	width: 80px;
 	display: inline-block;
 	float: right;
-	margin-left: 10px;
+	margin-right: 10px;
 }
 
 form {
+	margin-top: 20px;
 	text-align: center;
 }
