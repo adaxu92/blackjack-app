@@ -14,7 +14,6 @@ hit.addEventListener('click', function(){
 var stand = document.getElementById('standButton');
 stand.addEventListener("click", function(){
 	standing();
-	console.log(standing());
 })
 
 //=====================
@@ -26,7 +25,7 @@ var player = {
 		for (var a = 0; a < player.current.length; a++) {
 			totale += player.current[a].value;
 		} if (totale > 21) {
-			return ("Bust -" + player.name + " Loses")
+			alert("Bust! " + player.name + " Loses.")
 		} return totale
 	}
 };
@@ -46,7 +45,7 @@ var computer = {
 		for (var a = 0; a < computer.current.length; a++){
 			total += computer.current[a].value;
 		} if (total > 21) {
-			return ("Bust - Dealer Loses")
+			return ("Bust! Dealer Loses.")
 		} return total
 	}
 };
@@ -83,41 +82,57 @@ shuffle(deck);
 
 //=====================
 var cardDeals = function(){
-		var card1 = deck.pop(0);
-		var card2 = deck.pop(0);
-		var card3 = deck.pop(0);
-		var card4 = deck.pop(0);
-		player.current.push(card1, card2);
-		computer.current.push(card3, card4);
-		console.log("=====Player's Hand======");
-		console.log(player.current[0]);
-		console.log(player.current[1]);
-		console.log("Total: " + player.values());
-		console.log("====Computer's Hand====");
-		console.log(computer.current[0]);
-		console.log(computer.current[1]);
-		console.log("Total: " + computer.values());
+	var getCon = document.getElementById('userContainer');
+	for(var d = 0; d <= 1; d++){
+		var playDiv = document.createElement('div');
+		var playDeal = player.current.push(deck.pop([d]));
+		playDiv.className = 'userCard';
+		playDiv.setAttribute('data-value', playDeal);
+		getCon.appendChild(playDiv);
+	}
+	var getKon = document.getElementById('dealerContainer');
+	for (var q = 0; q <= 1; q++){
+		var comDiv = document.createElement('div');
+		var compDeal = computer.current.push(deck.pop([d]));
+		comDiv.className = 'dealerCard';
+		comDiv.setAttribute('data-value', compDeal);
+		getKon.appendChild(comDiv);	
+		
+	}
+	console.log("=====Player's Hand======");
+	console.log(player.current[0]);
+	console.log(player.current[1]);
+	console.log(player.name + "'s Total: "  + player.values());
 	}
 
 //====================
 var cardOne = function(){
-	player.current.push(deck.pop());
-	computer.current.push(deck.pop());
+	var getCon = document.getElementById('userContainer');
+	for(var r = 0; r < 1; r++){
+		var playDiv = document.createElement('div');
+		var playDeal = player.current.push(deck.pop([r]));
+		playDiv.className = 'userCard';
+		playDiv.setAttribute('data-value', playDeal);
+		getCon.appendChild(playDiv);
+	}
+	var getKon = document.getElementById('dealerContainer');
+	for (var y = 0; y < 1; y++){
+		var comDiv = document.createElement('div');
+		var compDeal = computer.current.push(deck.pop([y]));
+		comDiv.className = 'dealerCard';
+		comDiv.setAttribute('data-value', compDeal);
+		getKon.appendChild(comDiv);
+	}
 	alert('HIT!');
 	console.log("=====Player's Hand======");
-	console.log(player.current[0]);
-	console.log(player.current[1]);
+	console.log(player.current);
 	console.log("Total: " + player.values());
-	console.log("====Computer's Hand====");
-	console.log(computer.current[0]);
-	console.log(computer.current[1]);
-	console.log("Total: " + computer.values());
 }
 
 //====================
 var standing = function(){
-	// console.log(player.values());
-	// console.log(computer.values());
+	console.log(player.values());
+	console.log(computer.values());
 	if (player.values() > computer.values()){
 		alert(player.name + " wins!");
 	}
@@ -296,4 +311,27 @@ var standing = function(){
 //for (var e = 0; e < player.current.length; e++) {  // loops to distribute cardpop
 // need to distribute a cardpop into the class giveUser twice (aka v for loops)	
 // ===============================doesnt reset==============================
-// document.getElementById('form').reset();
+// document.getElementById('form').reset();		
+//  ============================wet, created a drier function ==============
+// var card1 = deck.pop(0);
+// var card2 = deck.pop(0);
+// var card3 = deck.pop(0);
+// var card4 = deck.pop(0);
+// player.current.push(card1, card2);
+// computer.current.push(card3, card4);
+// console.log("=====Player's Hand======");
+// console.log(player.current[0]);
+// console.log(player.current[1]);
+// console.log("Total: " + player.values());
+// console.log("====Computer's Hand====");
+// console.log(computer.current[0]);
+// console.log(computer.current[1]);
+// console.log("Total: " + computer.values());	getCon.innerHTML = " "
+// ===========================Rewrites the values===========================
+// while(getCon.firstChild){
+// 	getCon.removeChild(getCon.firstChild);
+// }	
+//getKon.innerHTML = " "
+// while(getKon.firstChild){
+// 	getKon.removeChild(getKon.firstChild);
+// }
