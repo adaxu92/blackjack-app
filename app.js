@@ -6,7 +6,6 @@ deal.addEventListener("click", function(){
 	cardDeals();
 })
 
-
 var hit = document.getElementById('hitButton');
 hit.addEventListener('click', function(){
 	cardOne();
@@ -27,10 +26,11 @@ var player = {
 		for (var a = 0; a < player.current.length; a++) {
 			totale += player.current[a].value;
 		} if (totale > 21) {
-			alert("Bust -" + " " +player.name + " " + "Loses")
+			return ("Bust -" + player.name + " Loses")
 		} return totale
 	}
 };
+
 player.name = askPlayer();
 function askPlayer(){
 	var name = prompt("Enter Your Name:")
@@ -46,7 +46,7 @@ var computer = {
 		for (var a = 0; a < computer.current.length; a++){
 			total += computer.current[a].value;
 		} if (total > 21) {
-			alert("Bust - Dealer Loses")
+			return ("Bust - Dealer Loses")
 		} return total
 	}
 };
@@ -56,6 +56,8 @@ var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
 
+
+//=====================
 var deck = []; 
 
 var makeCards = function(){ 
@@ -97,7 +99,6 @@ var cardDeals = function(){
 		console.log("Total: " + computer.values());
 	}
 
-
 //====================
 var cardOne = function(){
 	player.current.push(deck.pop());
@@ -126,7 +127,7 @@ var standing = function(){
 	else if (player.values() === computer.values()){
 		alert("Tie");
 	}
-	else if (computer.values = 21){
+	else if (computer.values === 21){
 		alert("Black Jack! Computer wins!")
 	}
 	else{
@@ -296,9 +297,3 @@ var standing = function(){
 // need to distribute a cardpop into the class giveUser twice (aka v for loops)	
 // ===============================doesnt reset==============================
 // document.getElementById('form').reset();
-// 
-// function resetform(){
-// 	document.getElementById('dealButton').reset();
-// 	shuffle(deck);
-// 	cardDeals();
-// }
