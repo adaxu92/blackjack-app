@@ -17,6 +17,7 @@ stand.addEventListener("click", function(){
 	console.log(standing());
 })
 
+//=====================
 var player = {
 	name: " ",
 	current: [],
@@ -25,12 +26,17 @@ var player = {
 		for (var a = 0; a < player.current.length; a++) {
 			totale += player.current[a].value;
 		} if (totale > 21) {
-			return ("Bust - Player Loses")
+			return ("Bust -" + player.name + "Loses")
 		} return totale
 	}
 };
+player.name = askPlayer();
+function askPlayer(){
+	var name = prompt("Enter Your Name:")
+	return name
+}
 
-
+//=====================
 var computer = {
 	name: "Mr.Bames Jond",
 	current: [],
@@ -44,15 +50,14 @@ var computer = {
 	}
 };
 
-
-
-
+//=====================
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
 
-var deck = []; 
 
+//=====================
+var deck = []; 
 
 var makeCards = function(){ 
 	for (var i=0; i<values.length; i++){ // loops thru so that suits goes in each value
@@ -66,17 +71,16 @@ var makeCards = function(){
 	}
 }
 
+//=====================
 makeCards();
 var shuffle = function(o) {
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
-}; // function to randomly shuffle deck
+};
 shuffle(deck);
 // console.log(deck);
 
-
-// console.log(distribute);
-
+//=====================
 var cardDeals = function(){
 		var card1 = deck.pop(0);
 		var card2 = deck.pop(0);
@@ -91,7 +95,7 @@ var cardDeals = function(){
 	}
 
 
-
+//====================
 var cardOne = function(){
 	player.current.push(deck.pop());
 	console.log(player);
@@ -101,20 +105,24 @@ var cardOne = function(){
 	console.log(computer.values());
 }
 
+//====================
 var standing = function(){
 	// console.log(player.values());
 	// console.log(computer.values());
 	if (player.values() > computer.values()){
-		return ("Player wins");
+		return (player.name + " wins!");
 	}
 	else if (player.values() < computer.values()){
-		return ("Computer Wins");
+		return ("Computer wins!");
 	}
 	else if (player.values() === computer.values()){
 		return("Tie");
 	}
+	else if (computer.values === 21){
+		return("Black Jack! Computer wins!")
+	}
 	else{
-		return("Draw");
+		return("umm.. you've broke thru the 4th dimension.");
 	}
 }
 
@@ -127,62 +135,6 @@ var standing = function(){
 //have cards with values 
 // 4 ones = 1ea or 11ea, 4 twos, 4 threes, 4 fours, 4 fives, 4 sixs, 4 sevens, 4 eights, 4 nines, 4 tens, 4 jacks = 10ea., 4 queens = 10ea., 4 kings = 10ea. 
 // is there a simpler way?
-// var deck = {
-// diamondace: 1,
-// diamondtwo: 2,
-// diamondthree: 3,
-// diamondfour: 4,
-// diamondfive: 5,
-// diamondsix: 6,
-// diamondseven: 7,
-// diamondeight: 8,
-// diamondnine: 9,
-// diamondten: 10,
-// diamondjack: 10,
-// diamondqueen: 10,
-// diamondking: 10,
-// cloverace: 1,
-// clovertwo: 2,
-// cloverthree: 3,
-// cloverfour: 4,
-// cloverfive: 5,
-// cloversix: 6,
-// cloverseven: 7,
-// clovereight: 8,
-// clovernine: 9,
-// cloverten: 10,
-// cloverjack: 10,
-// cloverqueen: 10,
-// cloverking: 10,
-// heartace: 1,
-// hearttwo: 2,
-// heartthree: 3,
-// heartfour: 4,
-// heartfive: 5,
-// heartsix: 6,
-// heartseven: 7,
-// hearteight: 8,
-// heartnine: 9,
-// heartten: 10,
-// heartjack: 10,
-// heartqueen: 10,
-// heartking: 10,
-// spadeace: 1,
-// spadetwo: 2,
-// spadethree: 3,
-// spadefour: 4,
-// spadefive: 5,
-// spadesix: 6,
-// spadeseven: 7,
-// spadeeight: 8,
-// spadenine: 9,
-// spadeten: 10,
-// spadejack: 10,
-// spadequeen: 10,
-// spadeking: 10
-// };
-// console.log(deck);
-// player { name: '', cardTotal: cardvalues();}
 
 // put cards in array, key  = card & val = card corresponding value
 // var getcardvalue = function(){}
@@ -244,7 +196,65 @@ var standing = function(){
 // first to hit zero, game over and game restarts
 
 // }); 
-// Garbage //
+// ===========================|||Garbage|||=================================
+// =========================Changing to Arrays==============================
+//var deck = {
+// diamondace: 1,
+// diamondtwo: 2,
+// diamondthree: 3,
+// diamondfour: 4,
+// diamondfive: 5,
+// diamondsix: 6,
+// diamondseven: 7,
+// diamondeight: 8,
+// diamondnine: 9,
+// diamondten: 10,
+// diamondjack: 10,
+// diamondqueen: 10,
+// diamondking: 10,
+// cloverace: 1,
+// clovertwo: 2,
+// cloverthree: 3,
+// cloverfour: 4,
+// cloverfive: 5,
+// cloversix: 6,
+// cloverseven: 7,
+// clovereight: 8,
+// clovernine: 9,
+// cloverten: 10,
+// cloverjack: 10,
+// cloverqueen: 10,
+// cloverking: 10,
+// heartace: 1,
+// hearttwo: 2,
+// heartthree: 3,
+// heartfour: 4,
+// heartfive: 5,
+// heartsix: 6,
+// heartseven: 7,
+// hearteight: 8,
+// heartnine: 9,
+// heartten: 10,
+// heartjack: 10,
+// heartqueen: 10,
+// heartking: 10,
+// spadeace: 1,
+// spadetwo: 2,
+// spadethree: 3,
+// spadefour: 4,
+// spadefive: 5,
+// spadesix: 6,
+// spadeseven: 7,
+// spadeeight: 8,
+// spadenine: 9,
+// spadeten: 10,
+// spadejack: 10,
+// spadequeen: 10,
+// spadeking: 10
+// };
+// console.log(deck);
+// player { name: '', cardTotal: cardvalues();}
+//========================Function doesnt shuffle==========================
 // var shuffle = function(o) {
 // 	var j, x, i;
 // 	for(i = o.length; i; i -= 1){
@@ -255,17 +265,16 @@ var standing = function(){
 // 		return o;
 // 	}		
 // };
-// ** Doesnt work because its takes in arrays and deck is object **
-
+// =======Doesnt work because its takes in arrays and deck is object========
 // shuffle(deck);
 // ** does that same thing as randomcard()  **
 // var tmpList = Object.keys(deck);
 // var randomPropertyName = tmpList[Math.floor(Math.random()*tmpList.length)];
 // var propertyValue = deck[randomPropertyName];
-// ** applies to arrays **
+// ============================applies to arrays ===========================
 // var randomCard = deck[Math.floor(Math.random() * deck.length)];
 
-// *innerHTML might just need text and not an array value**
+// ========innerHTML might just need text and not an array value============
 // cardpop
 // 		var pEach = document.createElement('p'); // creates par
 // 		var cardOne = deck.pop[v];
@@ -273,8 +282,9 @@ var standing = function(){
 // 		(pEach.innerHTML).push(cardOne);// place the par into userCards
 // 	}
 // }
-// cardOne
-// ** would not want to store objects into div **
+// =================would not want to store objects into div================
 // var giveUser = document.getElementsByClassName('userCard'); // gets userCard 	
 //for (var e = 0; e < player.current.length; e++) {  // loops to distribute cardpop
-		// need to distribute a cardpop into the class giveUser twice (aka v for loops)
+// need to distribute a cardpop into the class giveUser twice (aka v for loops)	
+// ===============================doesnt reset==============================
+// document.getElementById('form').reset();
