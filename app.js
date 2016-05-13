@@ -11,7 +11,7 @@ deal.addEventListener("click", function(){
 // Button that will give one card to player & dealer when clicked
 var hit = document.getElementById('hitButton');
 hit.addEventListener('click', function(){
-	cardOne();
+	cardOne();	
 })
 
 //Button that will company values & win conditions to reveal the winner when clicked
@@ -158,9 +158,6 @@ var standing = function(){
 	else if (computer.values === 21){ // if computer has a total of 21, they automatically win
 		alert("Black Jack! Dealer wins!")
 	}
-	else if(player.values() === 21 && computer.values() === 21){
-		alert("Dealer Wins!")
-	}
 	else{ // let's see what bug occurs
 		return("umm.. you've broke thru the 4th dimension.");
 	}
@@ -285,6 +282,7 @@ var standing = function(){
 // need to distribute a cardpop into the class giveUser twice (aka v for loops)	
 // ===============================doesnt reset==============================
 // document.getElementById('form').reset();		
+// document.getElementById('myform').reset();	
 //  ============================wet, created a drier function ==============
 // var card1 = deck.pop(0);
 // var card2 = deck.pop(0);
