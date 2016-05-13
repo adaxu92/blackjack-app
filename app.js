@@ -1,16 +1,20 @@
 // $(document).ready(function() {
 // window.onload = function(){
-var deal = document.getElementById('dealButton');
+
+// Button that will deal and shuffle cards when clicked
+var deal = document.getElementById('dealButton'); 
 deal.addEventListener("click", function(){
 	shuffle(deck);
 	cardDeals();
 })
 
+// Button that will give one card to player & dealer when clicked
 var hit = document.getElementById('hitButton');
 hit.addEventListener('click', function(){
 	cardOne();
 })
 
+//Button that will company values & win conditions to reveal the winner when clicked
 var stand = document.getElementById('standButton');
 stand.addEventListener("click", function(){
 	standing();
@@ -19,17 +23,18 @@ stand.addEventListener("click", function(){
 //=====================
 var player = {
 	name: " ",
-	current: [],
-	values: function(){
+	current: [], // possesses the current hand of player
+	values: function(){  // posseses the added number value of player's hand
 		var totale = 0;
 		for (var a = 0; a < player.current.length; a++) {
 			totale += player.current[a].value;
-		} if (totale > 21) {
+		} if (totale > 21) { // if the value is greater than 21, than player bust and loses
 			alert("Bust! " + player.name + " Loses.")
 		} return totale
 	}
 };
 
+// has a prompt to enter player's name
 player.name = askPlayer();
 function askPlayer(){
 	var name = prompt("Enter Your Name:")
@@ -38,11 +43,11 @@ function askPlayer(){
 
 //=====================
 var computer = {
-	name: "Mr.Bames Jond",
+	name: "Mr.Bames Jond", 
 	current: [],
 	values: function(){
 		var total = 0;
-		for (var a = 0; a < computer.current.length; a++){
+		for (var a = 0; a < computer.current.length; a++){ // if computer's added value is above 21, computer busts & player wins
 			total += computer.current[a].value;
 		} if (total > 21) {
 			return ("Bust! Dealer Loses.")
@@ -50,15 +55,14 @@ var computer = {
 	}
 };
 
-//=====================
+//====== Array of values, suits and names to be stored as object values in the deck array
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
 
-
-//=====================
 var deck = []; 
 
+//=========Places each suits value into the names and number value to generate 52 cards
 var makeCards = function(){ 
 	for (var i=0; i<values.length; i++){ // loops thru so that suits goes in each value
 		for (var a=0; a<suits.length; a++) { // loops thru so that we get 52 cards
@@ -71,7 +75,7 @@ var makeCards = function(){
 	}
 }
 
-//=====================
+//========Using the for loop, it will shuffle the array and object values in deck
 makeCards();
 var shuffle = function(o) {
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -80,35 +84,34 @@ var shuffle = function(o) {
 shuffle(deck);
 // console.log(deck);
 
-//=====================
+//=========function to deal two hands for player and computer when clicked
 var cardDeals = function(){
-	var getCon = document.getElementById('userContainer');
+	var getCon = document.getElementById('userContainer'); //place to store each card
 	for(var d = 0; d <= 1; d++){
-		var playDiv = document.createElement('div');
-		var playDeal = player.current.push(deck.pop([d]));
-		playDiv.className = 'userCard';
+		var playDiv = document.createElement('div');  // creating div to hold player's current hand
+		var playDeal = player.current.push(deck.pop([d])); // will create/hold two cards as player's current hand
+		playDiv.className = 'userCard'; // stored in a div class called userCard
 		playDiv.setAttribute('data-value', playDeal);
-		getCon.appendChild(playDiv);
+		getCon.appendChild(playDiv); // and appending it into the userContainer
 	}
-	var getKon = document.getElementById('dealerContainer');
+	var getKon = document.getElementById('dealerContainer'); // a place to store each card
 	for (var q = 0; q <= 1; q++){
-		var comDiv = document.createElement('div');
-		var compDeal = computer.current.push(deck.pop([d]));
+		var comDiv = document.createElement('div'); // creating a div to hold computer's current hand
+		var compDeal = computer.current.push(deck.pop([d])); // will create/hold two cards as computer's hand
 		comDiv.className = 'dealerCard';
 		comDiv.setAttribute('data-value', compDeal);
-		getKon.appendChild(comDiv);	
-		
+		getKon.appendChild(comDiv); // appending the newly created divs with class of dealerCard into dealerContainer
 	}
-	console.log("=====Player's Hand======");
-	console.log(player.current[0]);
+	console.log("=====Player's Hand======"); // shows the player's two cards and its added number value
+	console.log(player.current[0]); 
 	console.log(player.current[1]);
 	console.log(player.name + "'s Total: "  + player.values());
 	}
 
 //====================
 var cardOne = function(){
-	var getCon = document.getElementById('userContainer');
-	for(var r = 0; r < 1; r++){
+	var getCon = document.getElementById('userContainer'); // essentially using the same codes before to create more divs as hit is clicked
+	for(var r = 0; r < 1; r++){  // it will continously pop out one card when hit to the players hand
 		var playDiv = document.createElement('div');
 		var playDeal = player.current.push(deck.pop([r]));
 		playDiv.className = 'userCard';
@@ -123,80 +126,41 @@ var cardOne = function(){
 		comDiv.setAttribute('data-value', compDeal);
 		getKon.appendChild(comDiv);
 	}
-	alert('HIT!');
-	console.log("=====Player's Hand======");
+	alert('HIT!');  // Alerting player that they have chosen to hit
+	console.log("=====Player's Hand======"); // showing the current card value numbers with the added card's number value included
 	console.log(player.current);
 	console.log("Total: " + player.values());
 }
 
-//====================
+//=========Player chooses to stand and now check who is the winner
 var standing = function(){
-	console.log(player.values());
-	console.log(computer.values());
-	if (player.values() > computer.values()){
-		alert(player.name + " wins!");
+	console.log(player.values()); // reveals the player added number value
+	console.log(computer.values()); // reveals the computer added number value
+	if (player.values() > computer.values()){ // if player's total is greater than computer, then player wins
+		alert(player.name + " wins!"); // alert to tell player they've won. *note = if player hand is greater 21, an alert to say they bust occured on line 31
 	}
-	else if (player.values() < computer.values()){
-		alert("Computer wins!");
+	else if (player.values() < computer.values()){ // if computer total is greater than player but less than or equal to 21 (line 52), computer wins
+		alert("Dealer wins!");
 	}
-	else if (player.values() === computer.values()){
+	else if (player.values() === computer.values()){ // if both totals are identical, tie is alerted
 		alert("Tie");
 	}
-	else if (computer.values === 21){
-		alert("Black Jack! Computer wins!")
+	else if (computer.values === 21){ // if computer has a total of 21, they automatically win
+		alert("Black Jack! Dealer wins!")
 	}
-	else{
+	else if(player.values() === 21 && computer.values() === 21){
+		alert("Dealer Wins!")
+	}
+	else{ // let's see what bug occurs
 		return("umm.. you've broke thru the 4th dimension.");
 	}
 }
 
-// 	for(var a = 0; a < player.current.length; a++) {
-// 		player.current[a]
-// 	if {
-// 		player.current // take the current hand, call for the array value and add the value 
-// 	}
-// }//turned off fam
-//have cards with values 
+
+//======================== Thought Process ==========================
 // 4 ones = 1ea or 11ea, 4 twos, 4 threes, 4 fours, 4 fives, 4 sixs, 4 sevens, 4 eights, 4 nines, 4 tens, 4 jacks = 10ea., 4 queens = 10ea., 4 kings = 10ea. 
 // is there a simpler way?
-
-// put cards in array, key  = card & val = card corresponding value
-// var getcardvalue = function(){}
-// 
-// randomselector; function that randomizes object values in deck
-// var randomCard = function(obj){
-// 	var keys = Object.keys(obj)
-// 	return obj[keys[ keys.length * Math.random() <<0]];
-// 	distribute();
-// };
-
-// // distribute 2 cards to dealer and player
-// var distribute = function(){ 
-// 	var n = Math.floor(Math.random());
-// 	var v = deck.splice(n, 4);
-// 	console.log(v)
-// 	start();
-// };
-
-// var start = function(){
-// 	distribute(randomCard);
-// }
-
-
-// use randomCard, math.Random a value to splice
-// return splice
-// append value to a div
-	// splice two cards for player
-
-//randomCard()? // call for random card then distribute?
-// splice?
-// card value + together = ? 
-// var cardvalues = function {
-	// } distribute() and add values , set as arrays for distribute?? a loop fx?
-// var distrubuteHit = function(){
-// call shuffle() and get one key/value}
-
-
+// arrays.
 // player chooses to stand or hit
 // player stands; dealer shows added card values, if 21<=(dealers hand > player hands) , dealer wins, reset reshuffle,
 // var playerstands = function(){
@@ -219,7 +183,6 @@ var standing = function(){
 // winner of round gets 5 points added onto current points/score
 // first to hit zero, game over and game restarts
 
-// }); 
 // ===========================|||Garbage|||=================================
 // =========================Changing to Arrays==============================
 //var deck = {
@@ -335,3 +298,45 @@ var standing = function(){
 // while(getKon.firstChild){
 // 	getKon.removeChild(getKon.firstChild);
 // }
+// ==============Initial starting code that yielded no results==============
+// 	for(var a = 0; a < player.current.length; a++) {
+// 		player.current[a]
+// 	if {
+// 		player.current // take the current hand, call for the array value and add the value 
+// 	}
+// }//turned off fam
+// put cards in array, key  = card & val = card corresponding value
+// var getcardvalue = function(){}
+// 
+// randomselector; function that randomizes object values in deck
+// var randomCard = function(obj){
+// 	var keys = Object.keys(obj)
+// 	return obj[keys[ keys.length * Math.random() <<0]];
+// 	distribute();
+// };
+
+// // distribute 2 cards to dealer and player
+// var distribute = function(){ 
+// 	var n = Math.floor(Math.random());
+// 	var v = deck.splice(n, 4);
+// 	console.log(v)
+// 	start();
+// };
+
+// var start = function(){
+// 	distribute(randomCard);
+// }
+
+
+// use randomCard, math.Random a value to splice
+// return splice
+// append value to a div
+	// splice two cards for player
+
+//randomCard()? // call for random card then distribute?
+// splice?
+// card value + together = ? 
+// var cardvalues = function {
+	// } distribute() and add values , set as arrays for distribute?? a loop fx?
+// var distrubuteHit = function(){
+// call shuffle() and get one key/value}
