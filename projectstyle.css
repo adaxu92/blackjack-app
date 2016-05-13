@@ -9,7 +9,6 @@ body {
 	border: 5px solid white;
 	border-radius: 20px;
 }
-
 h1 {
 	font-size: 100px;
 	text-shadow: 8px 8px 8px #000000;
@@ -20,7 +19,7 @@ h1 {
 	animation-name: spinner;
   animation-duration: 1.5s;
   animation-timing-function: linear;
-  animation-iteration-count: 1;
+	animation-iteration-count: 1;
 }
 @keyframes spinner{
   0% {transform: rotate(1080deg);}
