@@ -149,7 +149,7 @@ var standing = function(){
 	if (player.values() > computer.values()){ // if player's total is greater than computer, then player wins
 		alert(player.name + " wins!"); // alert to tell player they've won. *note = if player hand is greater 21, an alert to say they bust occured on line 31
 	}
-	else if (player.values() < computer.values()){ // if computer total is greater than player but less than or equal to 21 (line 52), computer wins
+	else if (player.values() < computer.values() < 21){ // if computer total is greater than player but less than or equal to 21 (line 52), computer wins
 		alert("Dealer wins!");
 	}
 	else if (player.values() === computer.values()){ // if both totals are identical, tie is alerted
