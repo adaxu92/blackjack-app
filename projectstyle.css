@@ -17,12 +17,12 @@ h1 {
 	font-family: 'Slackey', cursive;
 	margin: 0px;
 	text-align: center;
-	animation-name: example;
+	animation-name: spinner;
   animation-duration: 1.5s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
 }
-@keyframes example {
+@keyframes spinner{
   0% {transform: rotate(1080deg);}
   50% {transform: rotate(360deg);}
   100% {transform: rotate(1080deg);}

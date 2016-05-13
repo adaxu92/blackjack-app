@@ -50,7 +50,7 @@ var computer = {
 		for (var a = 0; a < computer.current.length; a++){ // if computer's added value is above 21, computer busts & player wins
 			total += computer.current[a].value;
 		} if (total > 21) {
-			return ("Bust! Dealer Loses.")
+			alert("Bust! Dealer Loses.")
 		} return total
 	}
 };
@@ -86,7 +86,10 @@ shuffle(deck);
 
 //=========function to deal two hands for player and computer when clicked
 var cardDeals = function(){
-	var getCon = document.getElementById('userContainer'); //place to store each card
+	var getBC = document.getElementById('container'); // overall id that houses all divs
+	var getCon = document.createElement('div');
+	getCon.id = 'userContainer';//place to store each card
+	getBC.appendChild(getCon); // storing the newly created card div into the overll div container
 	for(var d = 0; d <= 1; d++){
 		var playDiv = document.createElement('div');  // creating div to hold player's current hand
 		var playDeal = player.current.push(deck.pop([d])); // will create/hold two cards as player's current hand
@@ -94,7 +97,9 @@ var cardDeals = function(){
 		playDiv.setAttribute('data-value', playDeal);
 		getCon.appendChild(playDiv); // and appending it into the userContainer
 	}
-	var getKon = document.getElementById('dealerContainer'); // a place to store each card
+	var getKon = document.createElement('div');
+	getKon.id = 'dealerContainer';// a place to store each card
+	getBC.appendChild(getKon); 
 	for (var q = 0; q <= 1; q++){
 		var comDiv = document.createElement('div'); // creating a div to hold computer's current hand
 		var compDeal = computer.current.push(deck.pop([d])); // will create/hold two cards as computer's hand
@@ -110,17 +115,22 @@ var cardDeals = function(){
 
 //====================
 var cardOne = function(){
-	var getCon = document.getElementById('userContainer'); // essentially using the same codes before to create more divs as hit is clicked
-	for(var r = 0; r < 1; r++){  // it will continously pop out one card when hit to the players hand
-		var playDiv = document.createElement('div');
+	var getBC = document.getElementById('userContainer'); // essentially using the same codes before to create a div each time hit is clicked
+	var getCon = document.createElement('div');
+	getCon.id = 'userContainer';
+	getBC.appendChild(getCon);
+	for(var r = 0; r < 1; r++){ 
+		var playDiv = document.createElement('div');// it will continously pop out one card when hit to the players hand
 		var playDeal = player.current.push(deck.pop([r]));
 		playDiv.className = 'userCard';
 		playDiv.setAttribute('data-value', playDeal);
 		getCon.appendChild(playDiv);
 	}
-	var getKon = document.getElementById('dealerContainer');
+	var getKon = document.createElement('div');
+	getKon.id = 'dealerContainer';
+	getBC.appendChild(getKon);
 	for (var y = 0; y < 1; y++){
-		var comDiv = document.createElement('div');
+		var comDiv = document.createElement('div'); // computer will continuously hit as player hits too
 		var compDeal = computer.current.push(deck.pop([y]));
 		comDiv.className = 'dealerCard';
 		comDiv.setAttribute('data-value', compDeal);
