@@ -1,0 +1,21 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: url('http://www.austop.net.au/media/catalog/category/3d-wood-table-top-background-with-tabletop-background-tabletop-background-tabletop.jpg')
+}
+
+h1{
+	text-align: center;
+	font-family: 'Montserrat Alternates', sans-serif;
+	color: white;
+	text-shadow: 2px 2px grey;
+	font-size: 5rem;
+}
+
+#dealButton,#standButton,#hitButton{
+	height: 50px;
+	width: 80px;
+}
+#myform{
+	text-align: center;
+}

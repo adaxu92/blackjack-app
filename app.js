@@ -21,6 +21,12 @@ stand.addEventListener("click", function(){
 })
 
 //=====================
+var body = document.body;
+var h2 = document.createElement('h2');
+		body.appendChild(h2);
+var h3 = document.createElement('h3');
+		body.appendChild(h3);
+
 var player = {
 	name: " ",
 	current: [], // possesses the current hand of player
@@ -38,6 +44,7 @@ var player = {
 player.name = askPlayer();
 function askPlayer(){
 	var name = prompt("Enter Your Name:")
+	h2.innerHTML = 'Hello ' + name + '!';
 	return name
 }
 
@@ -59,6 +66,7 @@ var computer = {
 var values =[1,2,3,4,5,6,7,8,9,10,10,10,10];
 var suits =["diamond", "clover", "heart","spade"];
 var names =["Ace", "Two", "Three", "Four", "Five", "Six", "Seven","Eight","Nine","Ten","Jack", "Queen", "King"];
+var pic = [];
 
 var deck = []; 
 
@@ -70,6 +78,7 @@ var makeCards = function(){
 			card.value = values[i];// number values goes into each card value
 			card.suit = suits[a]; // suits values goes into each card suit
 			card.name = names[i]; // name values goes into each card name
+			card.pic = names[i] + "_" + suits[a];
 			deck.push(card); // now card contains a total of 52 card name, suites and values that is placed into the empty deck arrat
 		}
 	}
@@ -84,68 +93,66 @@ var shuffle = function(o) {
 shuffle(deck);
 // console.log(deck);
 
+//=========Creating divs for cards
+var bigContainer = document.getElementById('container'); // overall id that houses the cards
+var userContainer = document.createElement('div');
+		userContainer.id = 'userContainer';//place to store each card	
+var dealerContainer = document.createElement('div');
+		dealerContainer.id = 'dealerContainer';// a place to store each card
+		bigContainer.appendChild(userContainer);
+		bigContainer.appendChild(dealerContainer);
+
 //=========function to deal two hands for player and computer when clicked
 var cardDeals = function(){
-	var getBC = document.getElementById('container'); // overall id that houses all divs
-	var getCon = document.createElement('div');
-	getCon.id = 'userContainer';//place to store each card
-	getBC.appendChild(getCon); // storing the newly created card div into the overll div container
+	console.log(bigContainer.firstChild);
+	player.current = [];
+	computer.current = [];
 	for(var d = 0; d <= 1; d++){
-		var playDiv = document.createElement('div');  // creating div to hold player's current hand
-		var playDeal = player.current.push(deck.pop([d])); // will create/hold two cards as player's current hand
-		playDiv.className = 'userCard'; // stored in a div class called userCard
-		playDiv.setAttribute('data-value', playDeal);
-		getCon.appendChild(playDiv); // and appending it into the userContainer
+		var playerDiv = document.createElement('div');  // creating div to hold player's current hand
+		var playerDeal = player.current.push(deck.pop([d])); // will create/hold two cards as player's current hand
+		playerDiv.className = 'userCard'; // stored in a div class called userCard
+		playerDiv.setAttribute('data-value', playerDeal);
+		userContainer.appendChild(playerDiv); // and appending it into the userContainer
 	}
-	var getKon = document.createElement('div');
-	getKon.id = 'dealerContainer';// a place to store each card
-	getBC.appendChild(getKon); 
+
 	for (var q = 0; q <= 1; q++){
 		var comDiv = document.createElement('div'); // creating a div to hold computer's current hand
-		var compDeal = computer.current.push(deck.pop([d])); // will create/hold two cards as computer's hand
+		var compDeal = computer.current.push(deck.pop([q])); // will create/hold two cards as computer's hand
 		comDiv.className = 'dealerCard';
 		comDiv.setAttribute('data-value', compDeal);
-		getKon.appendChild(comDiv); // appending the newly created divs with class of dealerCard into dealerContainer
+		dealerContainer.appendChild(comDiv); // appending the newly created divs with class of dealerCard into dealerContainer
 	}
 	console.log("=====Player's Hand======"); // shows the player's two cards and its added number value
-	console.log(player.current[0]); 
-	console.log(player.current[1]);
 	console.log(player.name + "'s Total: "  + player.values());
-	}
+	h3.innerHTML = player.values();;
+}
 
 //====================
 var cardOne = function(){
-	var getBC = document.getElementById('userContainer'); // essentially using the same codes before to create a div each time hit is clicked
-	var getCon = document.createElement('div');
-	getCon.id = 'userContainer';
-	getBC.appendChild(getCon);
 	for(var r = 0; r < 1; r++){ 
 		var playDiv = document.createElement('div');// it will continously pop out one card when hit to the players hand
 		var playDeal = player.current.push(deck.pop([r]));
 		playDiv.className = 'userCard';
 		playDiv.setAttribute('data-value', playDeal);
-		getCon.appendChild(playDiv);
+		userContainer.appendChild(playDiv);
 	}
-	var getKon = document.createElement('div');
-	getKon.id = 'dealerContainer';
-	getBC.appendChild(getKon);
 	for (var y = 0; y < 1; y++){
 		var comDiv = document.createElement('div'); // computer will continuously hit as player hits too
 		var compDeal = computer.current.push(deck.pop([y]));
 		comDiv.className = 'dealerCard';
 		comDiv.setAttribute('data-value', compDeal);
-		getKon.appendChild(comDiv);
+		dealerContainer.appendChild(comDiv);
 	}
 	alert('HIT!');  // Alerting player that they have chosen to hit
 	console.log("=====Player's Hand======"); // showing the current card value numbers with the added card's number value included
-	console.log(player.current);
+	console.log(player.current[2]);
 	console.log("Total: " + player.values());
 }
 
 //=========Player chooses to stand and now check who is the winner
 var standing = function(){
-	console.log(player.values()); // reveals the player added number value
-	console.log(computer.values()); // reveals the computer added number value
+	console.log('Player total: ' + player.values()); // reveals the player added number value
+	console.log('Computer total: ' + computer.values()); // reveals the computer added number value
 	if (player.values() > computer.values()){ // if player's total is greater than computer, then player wins
 		alert(player.name + " wins!"); // alert to tell player they've won. *note = if player hand is greater 21, an alert to say they bust occured on line 31
 	}
